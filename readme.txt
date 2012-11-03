@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-pop
 Plugin URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Tags: Popup, onclick, plugin, widget
 Requires at least: 3.0
-Tested up to: 3.4.1
-Stable tag: 3.0
+Tested up to: 3.4.2
+Stable tag: 4.0
 
 WordPress on-click Popup plugin will create a popup message to your website. The popup will appear on text click so it is named on-click popup.
 
@@ -74,11 +74,16 @@ First version.
 
 = 2.0 =
 
-Tested upto 3.4
+Tested up to 3.4
 
 = 3.0 =
 
-New demo link, www.gopiplus.com
+New demo link, http://www.gopiplus.com
+
+= 4.0 =
+
+Tested up to 3.4.2
+Slight change in the short code, Please find the new short code for your popup.
 
 == Upgrade Notice ==
 
@@ -88,8 +93,13 @@ First version.
 
 = 2.0 =
 
-Tested upto 3.4
+Tested up to 3.4
 
 = 3.0 =
 
-New demo link, www.gopiplus.com
+New demo link, http://www.gopiplus.com
+
+= 4.0 =
+
+Tested up to 3.4.2
+Slight change in the short code, Please find the new short code for your popup.

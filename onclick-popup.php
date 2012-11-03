@@ -5,7 +5,7 @@ Plugin Name: Onclick Popup
 Plugin URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Description: One easy way to send your visitors a welcome message, notice, or advertisement is to add this popup plugin to your site. WordPress on-click Popup plugin will create a popup message to your website. The popup will appear on text click so it is named on-click popup.
 Author: Gopi.R
-Version: 3.0
+Version: 4.0
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Tags: popup, onclick, plugin, widget
@@ -120,22 +120,20 @@ function onclickpopup_admin_content()
 	include_once("image-management.php");
 }
 
-function onclickpopup_show_filter($content)
-{
-	return 	preg_replace_callback('/\[ONCLICK-POPUP:(.*?)\]/sim','onclickpopup_show_filter_callback',$content);
-}
+add_shortcode( 'onclick-popup', 'onclickpopup_shortcode' );
 
-function onclickpopup_show_filter_callback($matches) 
+function onclickpopup_shortcode( $atts ) 
 {
 	global $wpdb;
-	$scode = $matches[1];
 
-	//[ONCLICK-POPUP:SETTING=1:GROUP=GROUP1]
-
-	list($setting_main, $group_main) = split("[:.-]", $scode);
+	//[onclick-popup setting="1" group="1"]
+	if ( ! is_array( $atts ) )
+	{
+		return '';
+	}
+	$setting = $atts['setting'];
+	$group = $atts['group'];
 	
-	list($setting_cap, $setting) = split('[=.-]', $setting_main);
-	list($group_cap, $group) = split('[=.-]', $group_main);
 	if($setting == "1")
 	{
 		$setting = get_option('onclickpopup_setting1');
@@ -184,7 +182,7 @@ function onclickpopup_show_filter_callback($matches)
 	@$OnClickPopup = @$OnClickPopup . '</style>';
     @$OnClickPopup = @$OnClickPopup . '<link rel="stylesheet" type="text/css" href="'.get_option('siteurl').'/wp-content/plugins/onclick-popup/onclick-popup.css" />';
     
-	$sSql = "select * from ".WP_ONCLICK_PLUGIN." where 1=1 and onclickpopup_group='".$group."' order by rand() limit 0,6;";
+	$sSql = "select * from ".WP_ONCLICK_PLUGIN." where 1=1 and onclickpopup_group='GROUP".$group."' order by rand() limit 0,6;";
 	$data = $wpdb->get_results($sSql);
 	if ( ! empty($data) ) 
 	{
@@ -263,7 +261,7 @@ else
 {
 	add_action('admin_menu', 'onclickpopup_add_to_menu');
 }
-add_filter('the_content','onclickpopup_show_filter');
+
 add_action("plugins_loaded", "onclickpopup_init");
 register_activation_hook(__FILE__, 'onclickpopup_install');
 register_deactivation_hook(__FILE__, 'onclickpopup_deactivation');

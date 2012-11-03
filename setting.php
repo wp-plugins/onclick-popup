@@ -1,6 +1,6 @@
 <?php
 	echo "<div class='wrap'>";
-	echo "<h2>OnClick Popup Setting</h2>"; 
+	echo "<h2>Onclick popup setting</h2>"; 
 	$onclickpopup_title = get_option('onclickpopup_title');
 	$onclickpopup_setting1 = get_option('onclickpopup_setting1');
 	$onclickpopup_setting1_left = get_option('onclickpopup_setting1_left');

@@ -68,7 +68,7 @@
         $submittext = "Update Message";
     }
     ?>
-  <h2>OnClick Popup Content Management</h2>
+  <h2>Onclick popup content management</h2>
   <script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/onclick-popup/setting.js"></script>
   <form name="onclickpopup_form" method="post" action="<?php echo $mainurl; ?>" onsubmit="return onclickpopup_submit()"  >
     <table width="100%">
@@ -141,7 +141,7 @@
         <?php $i = $i+1; } ?>
       </table>
       <br />
-      Note: Check official website <a href="http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/" target="_blank">gopiplus.com</a> for live demo and more help.
+      Note: Check official website for more information <a href="http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/" target="_blank">click here</a>
     </form>
   </div>
 </div>
