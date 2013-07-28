@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-pop
 Plugin URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Tags: Popup, onclick, plugin, widget
 Requires at least: 3.0
-Tested up to: 3.5
-Stable tag: 4.1
+Tested up to: 3.6
+Stable tag: 5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -91,6 +91,12 @@ Slight change in the short code, Please find the new short code for your popup.
 
 Tested up to 3.5
 
+= 5.0 =
+
+Tested up to 3.6
+Added few security features.
+New admin layout.
+
 == Upgrade Notice ==
 
 = 1.0 =			
@@ -113,3 +119,9 @@ Slight change in the short code, Please find the new short code for your popup.
 = 4.1 =
 
 Tested up to 3.5
+
+= 5.0 =
+
+Tested up to 3.6
+Added few security features.
+New admin layout.

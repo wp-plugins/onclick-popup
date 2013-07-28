@@ -20,7 +20,7 @@ function onclickpopup_submit()
 {
 	if(document.onclickpopup_form.onclickpopup_group.value=="")
 	{
-		alert("Please enter the image path.")
+		alert("Please select popup group.")
 		document.onclickpopup_form.onclickpopup_group.focus();
 		return false;
 	}
@@ -44,12 +44,17 @@ function onclickpopup_delete(id)
 {
 	if(confirm("Do you want to delete this record?"))
 	{
-		document.frm_onclickpopup_display.action="admin.php?page=onclickpopup_admin_content&AC=DEL&DID="+id;
+		document.frm_onclickpopup_display.action="admin.php?page=onclick-popup-content&ac=del&did="+id;
 		document.frm_onclickpopup_display.submit();
 	}
 }	
 
 function onclickpopup_redirect()
 {
-	window.location = "admin.php?page=onclickpopup_admin_content";
+	window.location = "admin.php?page=onclick-popup-content";
+}
+
+function onclickpopup_help()
+{
+	window.open("http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/");
 }
