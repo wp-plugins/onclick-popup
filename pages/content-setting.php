@@ -2,7 +2,7 @@
   <div class="form-wrap">
     <div id="icon-edit" class="icon32 icon32-posts-post"><br>
     </div>
-    <h2><?php echo WP_onclickpopup_TITLE; ?></h2>
+    <h2><?php _e('Onclick Popup', 'onclickpopup'); ?></h2>
     <?php
 
 	$onclickpopup_title = get_option('onclickpopup_title');
@@ -75,90 +75,94 @@
 		
 		?>
 		<div class="updated fade">
-			<p><strong>Details successfully updated.</strong></p>
+			<p><strong><?php _e('Details successfully updated.', 'onclickpopup'); ?></strong></p>
 		</div>
 		<?php
 	}
 	?>
-	<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/onclick-popup/pages/setting.js"></script>
+	<script language="JavaScript" src="<?php echo WP_onclickpopup_PLUGIN_URL; ?>/pages/setting.js"></script>
 	<form name="onclickpopup_form" method="post" action="">
-		<h3>Widget setting</h3>
+		<h3><?php _e('Widget setting', 'onclickpopup'); ?></h3>
 		
-		<label for="tag-title">Widget title</label>
+		<label for="tag-title"><?php _e('Widget title', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_title" type="text" id="onclickpopup_title" size="50" value="<?php echo $onclickpopup_title; ?>" />
-		<p>Please enter widget title.</p>
+		<p><?php _e('Please enter widget title.', 'onclickpopup'); ?></p>
 		
 		<div style="height:10px;"></div>
-		<h3>Setting 1</h3>
-		<label for="tag-title">CSS setting 1</label>
-		<input name="onclickpopup_setting1" type="text" id="onclickpopup_setting1" size="150" value="<?php echo $onclickpopup_setting1; ?>" />
+		<h3><?php _e('Setting 1', 'onclickpopup'); ?></h3>
+		<label for="tag-title"><?php _e('CSS setting 1', 'onclickpopup'); ?></label>
+		<input name="onclickpopup_setting1" type="text" id="onclickpopup_setting1" size="110" value="<?php echo $onclickpopup_setting1; ?>" />
 		<p>Example: width: 320px; background: #FFF; text-align: center; font-family: Arial,sans-serif; padding: 10px; border: 2px solid #666;</p>
-		<label for="tag-title">Left position</label>
+		<label for="tag-title"><?php _e('Left position', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_setting1_left" type="text" id="onclickpopup_setting1_left" size="10" maxlength="4" value="<?php echo $onclickpopup_setting1_left; ?>" />
-		<p>Please enter your popup window LEFT position for setting 1</p>
-		<label for="tag-title">Top position</label>
+		<p><?php _e('Please enter your popup window LEFT position for setting 1', 'onclickpopup'); ?></p>
+		<label for="tag-title"><?php _e('Top position', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_setting1_top" type="text" id="onclickpopup_setting1_top" size="10" maxlength="4" value="<?php echo $onclickpopup_setting1_top; ?>" />
-		<p>Please enter your popup window TOP position for setting 1</p>
+		<p><?php _e('Please enter your popup window TOP position for setting 1', 'onclickpopup'); ?></p>
 		<div style="height:10px;"></div>
 		
 		<div style="height:10px;"></div>
-		<h3>Setting 2</h3>
-		<label for="tag-title">CSS setting 2</label>
-		<input name="onclickpopup_setting2" type="text" id="onclickpopup_setting2" size="150" value="<?php echo $onclickpopup_setting2; ?>" />
+		<h3><?php _e('Setting 2', 'onclickpopup'); ?></h3>
+		<label for="tag-title"><?php _e('CSS setting 2', 'onclickpopup'); ?></label>
+		<input name="onclickpopup_setting2" type="text" id="onclickpopup_setting2" size="110" value="<?php echo $onclickpopup_setting2; ?>" />
 		<p>Example: width: 320px; background: #FFF; text-align: center; font-family: Arial,sans-serif; padding: 10px; border: 2px solid #666;</p>
-		<label for="tag-title">Left position</label>
+		<label for="tag-title"><?php _e('Left position', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_setting2_left" type="text" id="onclickpopup_setting2_left" size="10" maxlength="4" value="<?php echo $onclickpopup_setting2_left; ?>" />
-		<p>Please enter your popup window LEFT position for setting 2</p>
-		<label for="tag-title">Top position</label>
+		<p><?php _e('Please enter your popup window LEFT position for setting 2', 'onclickpopup'); ?></p>
+		<label for="tag-title"><?php _e('Top position', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_setting2_top" type="text" id="onclickpopup_setting2_top" size="10" maxlength="4" value="<?php echo $onclickpopup_setting2_top; ?>" />
-		<p>Please enter your popup window TOP position for setting 2</p>
+		<p><?php _e('Please enter your popup window TOP position for setting 2', 'onclickpopup'); ?></p>
 		<div style="height:10px;"></div>
 		
 		<div style="height:10px;"></div>
-		<h3>Setting 3</h3>
-		<label for="tag-title">CSS setting 3</label>
-		<input name="onclickpopup_setting3" type="text" id="onclickpopup_setting3" size="150" value="<?php echo $onclickpopup_setting3; ?>" />
+		<h3><?php _e('Setting 3', 'onclickpopup'); ?></h3>
+		<label for="tag-title"><?php _e('CSS setting 3', 'onclickpopup'); ?></label>
+		<input name="onclickpopup_setting3" type="text" id="onclickpopup_setting3" size="110" value="<?php echo $onclickpopup_setting3; ?>" />
 		<p>Example: width: 320px; background: #FFF; text-align: center; font-family: Arial,sans-serif; padding: 10px; border: 2px solid #666;</p>
-		<label for="tag-title">Left position</label>
+		<label for="tag-title"><?php _e('Left position', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_setting3_left" type="text" id="onclickpopup_setting3_left" size="10" maxlength="4" value="<?php echo $onclickpopup_setting3_left; ?>" />
-		<p>Please enter your popup window LEFT position for setting 3</p>
-		<label for="tag-title">Top position</label>
+		<p><?php _e('Please enter your popup window LEFT position for setting 3', 'onclickpopup'); ?></p>
+		<label for="tag-title"><?php _e('Top position', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_setting3_top" type="text" id="onclickpopup_setting3_top" size="10" maxlength="4" value="<?php echo $onclickpopup_setting3_top; ?>" />
-		<p>Please enter your popup window TOP position for setting 3</p>
+		<p><?php _e('Please enter your popup window TOP position for setting 3', 'onclickpopup'); ?></p>
 		<div style="height:10px;"></div>
 		
 		<div style="height:10px;"></div>
-		<h3>Setting 4</h3>
-		<label for="tag-title">CSS setting 4</label>
-		<input name="onclickpopup_setting4" type="text" id="onclickpopup_setting4" size="150" value="<?php echo $onclickpopup_setting4; ?>" />
+		<h3><?php _e('Setting 4', 'onclickpopup'); ?></h3>
+		<label for="tag-title"><?php _e('CSS setting 4', 'onclickpopup'); ?></label>
+		<input name="onclickpopup_setting4" type="text" id="onclickpopup_setting4" size="110" value="<?php echo $onclickpopup_setting4; ?>" />
 		<p>Example: width: 320px; background: #FFF; text-align: center; font-family: Arial,sans-serif; padding: 10px; border: 2px solid #666;</p>
-		<label for="tag-title">Left position</label>
+		<label for="tag-title"><?php _e('Left position', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_setting4_left" type="text" id="onclickpopup_setting4_left" size="10" maxlength="4" value="<?php echo $onclickpopup_setting4_left; ?>" />
-		<p>Please enter your popup window LEFT position for setting 4</p>
-		<label for="tag-title">Top position</label>
+		<p><?php _e('Please enter your popup window LEFT position for setting 4', 'onclickpopup'); ?></p>
+		<label for="tag-title"><?php _e('Top position', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_setting4_top" type="text" id="onclickpopup_setting4_top" size="10" maxlength="4" value="<?php echo $onclickpopup_setting4_top; ?>" />
-		<p>Please enter your popup window TOP position for setting 4</p>
+		<p><?php _e('Please enter your popup window TOP position for setting 4', 'onclickpopup'); ?></p>
 		<div style="height:10px;"></div>
 		
 		<div style="height:10px;"></div>
-		<h3>Setting 5</h3>
-		<label for="tag-title">CSS setting 5</label>
-		<input name="onclickpopup_setting5" type="text" id="onclickpopup_setting5" size="150" value="<?php echo $onclickpopup_setting5; ?>" />
+		<h3><?php _e('Setting 5', 'onclickpopup'); ?></h3>
+		<label for="tag-title"><?php _e('CSS setting 5', 'onclickpopup'); ?></label>
+		<input name="onclickpopup_setting5" type="text" id="onclickpopup_setting5" size="110" value="<?php echo $onclickpopup_setting5; ?>" />
 		<p>Example: width: 320px; background: #FFF; text-align: center; font-family: Arial,sans-serif; padding: 10px; border: 2px solid #666;</p>
-		<label for="tag-title">Left position</label>
+		<label for="tag-title"><?php _e('Left position', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_setting5_left" type="text" id="onclickpopup_setting5_left" size="10" maxlength="4" value="<?php echo $onclickpopup_setting5_left; ?>" />
-		<p>Please enter your popup window LEFT position for setting 5</p>
-		<label for="tag-title">Top position</label>
+		<p><?php _e('Please enter your popup window LEFT position for setting 5', 'onclickpopup'); ?></p>
+		<label for="tag-title"><?php _e('Top position', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_setting5_top" type="text" id="onclickpopup_setting5_top" size="10" maxlength="4" value="<?php echo $onclickpopup_setting5_top; ?>" />
-		<p>Please enter your popup window TOP position for setting 5</p>
+		<p><?php _e('Please enter your popup window TOP position for setting 5', 'onclickpopup'); ?></p>
 		<div style="height:10px;"></div>
 		
 		<div style="height:10px;"></div>
 		<input type="hidden" name="onclickpopup_form_submit" value="yes"/>
-		<input name="onclickpopup_submit" id="onclickpopup_submit" class="button add-new-h2" value="Submit" type="submit" />
-		<input name="Help" lang="publish" class="button add-new-h2" onclick="onclickpopup_help()" value="Help" type="button" />
+		<input name="onclickpopup_submit" id="onclickpopup_submit" class="button add-new-h2" value="<?php _e('Submit', 'onclickpopup'); ?>" type="submit" />
+		<input name="Help" lang="publish" class="button add-new-h2" onclick="onclickpopup_help()" value="<?php _e('Help', 'onclickpopup'); ?>" type="button" />
 		<?php wp_nonce_field('onclickpopup_form_setting'); ?>
 	</form>
   </div>
-  <br /><p class="description"><?php echo WP_onclickpopup_LINK; ?></p>
+  <br />
+<p class="description">
+	<?php _e('Check official website for more information', 'onclickpopup'); ?>
+	<a target="_blank" href="<?php echo WP_onclickpopup_FAV; ?>"><?php _e('click here', 'onclickpopup'); ?></a>
+</p>
 </div>

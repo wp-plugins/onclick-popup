@@ -13,7 +13,7 @@ $result = $wpdb->get_var($sSql);
 
 if ($result != '1')
 {
-	?><div class="error fade"><p><strong>Oops, selected details doesn't exist.</strong></p></div><?php
+	?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist', 'onclickpopup'); ?></strong></p></div><?php
 }
 else
 {
@@ -49,21 +49,21 @@ if (isset($_POST['onclickpopup_form_submit']) && $_POST['onclickpopup_form_submi
 	$form['onclickpopup_group'] = isset($_POST['onclickpopup_group']) ? $_POST['onclickpopup_group'] : '';
 	if ($form['onclickpopup_group'] == '')
 	{
-		$onclickpopup_errors[] = __('Please select popup group.', WP_onclickpopup_UNIQUE_NAME);
+		$onclickpopup_errors[] = __('Please select popup group.', 'onclickpopup');
 		$onclickpopup_error_found = TRUE;
 	}
 
 	$form['onclickpopup_title'] = isset($_POST['onclickpopup_title']) ? $_POST['onclickpopup_title'] : '';
 	if ($form['onclickpopup_title'] == '')
 	{
-		$onclickpopup_errors[] = __('Please enter the popup title.', WP_onclickpopup_UNIQUE_NAME);
+		$onclickpopup_errors[] = __('Please enter the popup title.', 'onclickpopup');
 		$onclickpopup_error_found = TRUE;
 	}
 
 	$form['onclickpopup_content'] = isset($_POST['onclickpopup_content']) ? $_POST['onclickpopup_content'] : '';
 	if ($form['onclickpopup_content'] == '')
 	{
-		$onclickpopup_errors[] = __('Please enter the popup content.', WP_onclickpopup_UNIQUE_NAME);
+		$onclickpopup_errors[] = __('Please enter the popup content.', 'onclickpopup');
 		$onclickpopup_error_found = TRUE;
 	}
 
@@ -81,7 +81,7 @@ if (isset($_POST['onclickpopup_form_submit']) && $_POST['onclickpopup_form_submi
 			);
 		$wpdb->query($sSql);
 		
-		$onclickpopup_success = 'Image details was successfully updated.';
+		$onclickpopup_success = __('Image details was successfully updated.', 'onclickpopup');
 	}
 }
 
@@ -97,19 +97,20 @@ if ($onclickpopup_error_found == FALSE && strlen($onclickpopup_success) > 0)
 {
 	?>
 	<div class="updated fade">
-		<p><strong><?php echo $onclickpopup_success; ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=onclick-popup-content">Click here</a> to view the details</strong></p>
+		<p><strong><?php echo $onclickpopup_success; ?> 
+		<a href="<?php echo WP_onclickpopup_ADMIN_URL; ?>"><?php _e('Click here to view the details', 'onclickpopup'); ?></a></strong></p>
 	</div>
 	<?php
 }
 ?>
-<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/onclick-popup/pages/setting.js"></script>
+<script language="JavaScript" src="<?php echo WP_onclickpopup_PLUGIN_URL; ?>/pages/setting.js"></script>
 <div class="form-wrap">
 	<div id="icon-edit" class="icon32 icon32-posts-post"><br></div>
-	<h2><?php echo WP_PHOTO_50_TITLE; ?></h2>
+	<h2><?php _e('Onclick Popup', 'onclickpopup'); ?></h2>
 	<form name="onclickpopup_form" method="post" action="#" onsubmit="return onclickpopup_submit()"  >
-      <h3>Update details</h3>
+      <h3><?php _e('Update Details', 'onclickpopup'); ?></h3>
       
-	  	<label for="tag-title">Select popup group (This is to group the content)</label>
+	  	<label for="tag-title"><?php _e('Select popup group (This is to group the content)', 'onclickpopup'); ?></label>
 		<select name="onclickpopup_group" id="onclickpopup_group">
 		<option value=''>Select</option>
 		<?php
@@ -141,25 +142,28 @@ if ($onclickpopup_error_found == FALSE && strlen($onclickpopup_success) > 0)
 		}
 		?>
 		</select>
-		<p>This is to group the content. Please select your group.</p>
+		<p><?php _e('This is to group the content. Please select your group.', 'onclickpopup'); ?></p>
 		
-		<label for="tag-title">Popup title</label>
+		<label for="tag-title"><?php _e('Popup title', 'onclickpopup'); ?></label>
 		<input name="onclickpopup_title" type="text" id="onclickpopup_title" value="<?php echo esc_html(stripslashes($form['onclickpopup_title'])); ?>" size="120" maxlength="1000" />
-		<p>Please enter your popup title.</p>
+		<p><?php _e('Please enter your popup title.', 'onclickpopup'); ?></p>
 			
-		<label for="tag-title">Popup content</label>
+		<label for="tag-title"><?php _e('Popup content', 'onclickpopup'); ?></label>
 		<textarea name="onclickpopup_content" cols="120" rows="12" id="onclickpopup_content"><?php echo esc_html(stripslashes($form['onclickpopup_content'])); ?></textarea>
-		<p>Please enter your popup content. You can add HTML text.</p>
+		<p><?php _e('Please enter your popup content. You can add HTML text.', 'onclickpopup'); ?></p>
 	  
       <input name="onclickpopup_id" id="onclickpopup_id" type="hidden" value="<?php echo $form['onclickpopup_id']; ?>">
       <input type="hidden" name="onclickpopup_form_submit" value="yes"/>
       <p class="submit">
-        <input name="publish" lang="publish" class="button add-new-h2" value="Update Details" type="submit" />
-        <input name="publish" lang="publish" class="button add-new-h2" onclick="onclickpopup_redirect()" value="Cancel" type="button" />
-        <input name="Help" lang="publish" class="button add-new-h2" onclick="onclickpopup_help()" value="Help" type="button" />
+        <input name="publish" lang="publish" class="button add-new-h2" value="<?php _e('Update Details', 'onclickpopup'); ?>" type="submit" />
+        <input name="publish" lang="publish" class="button add-new-h2" onclick="onclickpopup_redirect()" value="<?php _e('Cancel', 'onclickpopup'); ?>" type="button" />
+        <input name="Help" lang="publish" class="button add-new-h2" onclick="onclickpopup_help()" value="<?php _e('Help', 'onclickpopup'); ?>" type="button" />
       </p>
 	  <?php wp_nonce_field('onclickpopup_form_edit'); ?>
     </form>
 </div>
-<p class="description"><?php echo WP_onclickpopup_LINK; ?></p>
+<p class="description">
+	<?php _e('Check official website for more information', 'onclickpopup'); ?>
+	<a target="_blank" href="<?php echo WP_onclickpopup_FAV; ?>"><?php _e('click here', 'onclickpopup'); ?></a>
+</p>
 </div>

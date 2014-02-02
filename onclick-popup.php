@@ -1,11 +1,10 @@
 <?php
-
 /*
 Plugin Name: Onclick Popup
 Plugin URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Description: One easy way to send your visitors a welcome message, notice, or advertisement is to add this popup plugin to your site. WordPress on-click Popup plugin will create a popup message to your website. The popup will appear on text click so it is named on-click popup.
 Author: Gopi.R
-Version: 5.0
+Version: 5.1
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Tags: popup, onclick, plugin, widget
@@ -15,15 +14,27 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 global $wpdb, $wp_version;
 define("WP_ONCLICK_PLUGIN", $wpdb->prefix . "onclick_popup_plugin");
-
-define("WP_onclickpopup_UNIQUE_NAME", "onclick-popup");
-define("WP_onclickpopup_TITLE", "Onclick Popup");
+//define("WP_onclickpopup_UNIQUE_NAME", "onclick-popup");
+//define("WP_onclickpopup_TITLE", "Onclick Popup");
 define('WP_onclickpopup_FAV', 'http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/');
-define('WP_onclickpopup_LINK', 'Check official website for more information <a target="_blank" href="'.WP_onclickpopup_FAV.'">click here</a>');
+//define('WP_onclickpopup_LINK', 'Check official website for more information <a target="_blank" href="'.WP_onclickpopup_FAV.'">click here</a>');
+
+if ( ! defined( 'WP_onclickpopup_BASENAME' ) )
+	define( 'WP_onclickpopup_BASENAME', plugin_basename( __FILE__ ) );
+	
+if ( ! defined( 'WP_onclickpopup_PLUGIN_NAME' ) )
+	define( 'WP_onclickpopup_PLUGIN_NAME', trim( dirname( WP_onclickpopup_BASENAME ), '/' ) );
+	
+if ( ! defined( 'WP_onclickpopup_PLUGIN_URL' ) )
+	define( 'WP_onclickpopup_PLUGIN_URL', WP_PLUGIN_URL . '/' . WP_onclickpopup_PLUGIN_NAME );
+	
+if ( ! defined( 'WP_onclickpopup_ADMIN_URL' ) )
+	define( 'WP_onclickpopup_ADMIN_URL', get_option('siteurl') . '/wp-admin/admin.php?page=onclick-popup-content' );
 
 function OnClickPopUp() 
 {
 	global $wpdb;
+	$li = "";
 	$setting = get_option('onclickpopup_setting1');
 	$setting_left = get_option('onclickpopup_setting1_left');
 	$setting_top = get_option('onclickpopup_setting1_top');
@@ -43,31 +54,31 @@ function OnClickPopUp()
 		z-index: 1000;	
 	}
 	</style>
-    <link rel="stylesheet" type="text/css" href="<?php echo get_option('siteurl'); ?>/wp-content/plugins/onclick-popup/onclick-popup.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo WP_onclickpopup_PLUGIN_URL; ?>/onclick-popup.css" />
 	<?php
 	$sSql = "select * from ".WP_ONCLICK_PLUGIN." where 1=1 and onclickpopup_group='GROUP1' order by rand() limit 0,6;";
 	$data = $wpdb->get_results($sSql);
 	if ( ! empty($data) ) 
 	{
-		@$counter = 1;
+		$counter = 1;
 		foreach ( $data as $data ) 
 		{
-			@$onclickpopup_group = stripslashes($data->onclickpopup_group);
-			@$onclickpopup_title = htmlspecialchars(stripslashes($data->onclickpopup_title));
-			@$onclickpopup_content = htmlspecialchars(stripslashes($data->onclickpopup_content));
-			@$div = "'PopUpFad".@$counter."'";
-			@$li = @$li . '<li><a href="#" onclick="PopUpFadOpen('.@$div.', '.@$setting_left.')">'.$onclickpopup_title.'</a></li>';
+			$onclickpopup_group = stripslashes($data->onclickpopup_group);
+			$onclickpopup_title = htmlspecialchars(stripslashes($data->onclickpopup_title));
+			$onclickpopup_content = htmlspecialchars(stripslashes($data->onclickpopup_content));
+			$div = "'PopUpFad".$counter."'";
+			$li = $li . '<li><a href="#" onclick="PopUpFadOpen('.$div.', '.$setting_left.')">'.$onclickpopup_title.'</a></li>';
 			?>
-			<div id="PopUpFad<?php echo @$counter; ?>">
-      		<div class="PopUpFadClose"><a href="#" onClick="PopUpFadCloseX('PopUpFad<?php echo @$counter; ?>')">
-            <img src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/onclick-popup/close.jpg" /></a></div>
-      		<div><?php echo @$onclickpopup_content; ?></div>
+			<div id="PopUpFad<?php echo $counter; ?>">
+      		<div class="PopUpFadClose"><a href="#" onClick="PopUpFadCloseX('PopUpFad<?php echo $counter; ?>')">
+            <img src="<?php echo WP_onclickpopup_PLUGIN_URL; ?>/close.jpg" /></a></div>
+      		<div><?php echo $onclickpopup_content; ?></div>
     		</div>
     		<?php
-			@$counter = $counter + 1;
+			$counter = $counter + 1;
 		}
 	}
-	?><ul><?php echo @$li; ?></ul><?php
+	?><ul><?php echo $li; ?></ul><?php
 }
 
 function onclickpopup_install() 
@@ -86,7 +97,7 @@ function onclickpopup_install()
 		$sSql = $sSql . "`onclickpopup_Extra3` VARCHAR( 100 ) NOT NULL ,";
 		$sSql = $sSql . "`onclickpopup_date` datetime NOT NULL default '0000-00-00 00:00:00' ,";
 		$sSql = $sSql . "PRIMARY KEY ( `onclickpopup_id` )";
-		$sSql = $sSql . ")";
+		$sSql = $sSql . ") ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
 		$wpdb->query($sSql);
 		
 		$IsSql = "INSERT INTO `". WP_ONCLICK_PLUGIN . "` (`onclickpopup_group`, `onclickpopup_title`, `onclickpopup_content`, `onclickpopup_date`)"; 
@@ -146,7 +157,9 @@ add_shortcode( 'onclick-popup', 'onclickpopup_shortcode' );
 function onclickpopup_shortcode( $atts ) 
 {
 	global $wpdb;
-
+	$OnClickPopup = "";
+	$li = "";
+	
 	//[onclick-popup setting="1" group="1"]
 	if ( ! is_array( $atts ) )
 	{
@@ -186,45 +199,45 @@ function onclickpopup_shortcode( $atts )
 		$setting_top = get_option('onclickpopup_setting5_top');
 	}
 	
-	@$OnClickPopup = @$OnClickPopup . '<style type="text/css">';
-	@$OnClickPopup = @$OnClickPopup . '#PopUpFad1, #PopUpFad2, #PopUpFad3, #PopUpFad4, #PopUpFad5, #PopUpFad6 ';
-	@$OnClickPopup = @$OnClickPopup . '{';
-		@$OnClickPopup = @$OnClickPopup . 'top: '. $setting_top. 'px; ';
-		@$OnClickPopup = @$OnClickPopup . $setting;
-		@$OnClickPopup = @$OnClickPopup . 'position: absolute;';
-		@$OnClickPopup = @$OnClickPopup . 'margin: 0 auto;';
-		@$OnClickPopup = @$OnClickPopup . 'display: none;';
-		@$OnClickPopup = @$OnClickPopup . 'opacity: 0;';
-		@$OnClickPopup = @$OnClickPopup . 'KHTMLOpacity: 0;';
-		@$OnClickPopup = @$OnClickPopup . 'filter: alpha(opacity=0); ';
-		@$OnClickPopup = @$OnClickPopup . '-moz-opacity: 0;';
-		@$OnClickPopup = @$OnClickPopup . 'z-index: 1000;	';
-	@$OnClickPopup = @$OnClickPopup . '}';
-	@$OnClickPopup = @$OnClickPopup . '</style>';
-    @$OnClickPopup = @$OnClickPopup . '<link rel="stylesheet" type="text/css" href="'.get_option('siteurl').'/wp-content/plugins/onclick-popup/onclick-popup.css" />';
+	$OnClickPopup = $OnClickPopup . '<style type="text/css">';
+	$OnClickPopup = $OnClickPopup . '#PopUpFad1, #PopUpFad2, #PopUpFad3, #PopUpFad4, #PopUpFad5, #PopUpFad6 ';
+	$OnClickPopup = $OnClickPopup . '{';
+		$OnClickPopup = $OnClickPopup . 'top: '. $setting_top. 'px; ';
+		$OnClickPopup = $OnClickPopup . $setting;
+		$OnClickPopup = $OnClickPopup . 'position: absolute;';
+		$OnClickPopup = $OnClickPopup . 'margin: 0 auto;';
+		$OnClickPopup = $OnClickPopup . 'display: none;';
+		$OnClickPopup = $OnClickPopup . 'opacity: 0;';
+		$OnClickPopup = $OnClickPopup . 'KHTMLOpacity: 0;';
+		$OnClickPopup = $OnClickPopup . 'filter: alpha(opacity=0); ';
+		$OnClickPopup = $OnClickPopup . '-moz-opacity: 0;';
+		$OnClickPopup = $OnClickPopup . 'z-index: 1000;	';
+	$OnClickPopup = $OnClickPopup . '}';
+	$OnClickPopup = $OnClickPopup . '</style>';
+    $OnClickPopup = $OnClickPopup . '<link rel="stylesheet" type="text/css" href="'.WP_onclickpopup_PLUGIN_URL.'/onclick-popup.css" />';
     
 	$sSql = "select * from ".WP_ONCLICK_PLUGIN." where 1=1 and onclickpopup_group='GROUP".$group."' order by rand() limit 0,6;";
 	$data = $wpdb->get_results($sSql);
 	if ( ! empty($data) ) 
 	{
-		@$counter = 1;
+		$counter = 1;
 		foreach ( $data as $data ) 
 		{
 			$onclickpopup_group = stripslashes($data->onclickpopup_group);
 			$onclickpopup_title = stripslashes($data->onclickpopup_title);
 			$onclickpopup_content = stripslashes($data->onclickpopup_content);
-			@$div = "'PopUpFad".@$counter."'";
-			@$li = @$li . '<div><a href="#" onclick="PopUpFadOpen('.@$div.', '.@$setting_left.')">'.$onclickpopup_title.'</a></div>';
+			$div = "'PopUpFad".$counter."'";
+			$li = $li . '<div><a href="#" onclick="PopUpFadOpen('.$div.', '.$setting_left.')">'.$onclickpopup_title.'</a></div>';
 			
-			@$OnClickPopup = @$OnClickPopup . '<div id='.@$div.'>';
-      		@$OnClickPopup = @$OnClickPopup . '<div class="PopUpFadClose"><a href="#" onClick="PopUpFadCloseX('.$div.')">';
-            @$OnClickPopup = @$OnClickPopup . '<img src="'.get_option('siteurl').'/wp-content/plugins/onclick-popup/close.jpg" /></a></div>';
-      		@$OnClickPopup = @$OnClickPopup . '<div>'.@$onclickpopup_content.'</div>';
-    		@$OnClickPopup = @$OnClickPopup . '</div>';
+			$OnClickPopup = $OnClickPopup . '<div id='.$div.'>';
+      		$OnClickPopup = $OnClickPopup . '<div class="PopUpFadClose"><a href="#" onClick="PopUpFadCloseX('.$div.')">';
+            $OnClickPopup = $OnClickPopup . '<img src="'.WP_onclickpopup_PLUGIN_URL.'/close.jpg" /></a></div>';
+      		$OnClickPopup = $OnClickPopup . '<div>'.$onclickpopup_content.'</div>';
+    		$OnClickPopup = $OnClickPopup . '</div>';
     		
-			@$counter = $counter + 1;
+			$counter = $counter + 1;
 		}
-		@$OnClickPopup = @$OnClickPopup .@$li;
+		$OnClickPopup = $OnClickPopup .$li;
 	}
 	return $OnClickPopup;
 }
@@ -236,14 +249,14 @@ function onclickpopup_deactivation()
 
 function onclickpopup_add_javascript_files() 
 {	
-	wp_enqueue_script( 'onclick-popup', get_option('siteurl').'/wp-content/plugins/onclick-popup/onclick-popup.js');
+	wp_enqueue_script( 'onclick-popup', WP_onclickpopup_PLUGIN_URL.'/onclick-popup.js');
 }
 
 function onclickpopup_add_to_menu() 
 {
-	add_menu_page( __( 'OnClick Popup', 'onclickpopup' ), __( 'OnClick Popup', 'onclick-popup' ), 'administrator', 'onclick-popup', 'onclickpopup_admin_options' );
-	add_submenu_page( 'onclick-popup', __( 'Popup Setting', 'onclick-popup' ), __( 'Popup Setting', 'onclick-popup' ),'administrator', 'onclick-popup', 'onclickpopup_admin_options' );
-	add_submenu_page( 'onclick-popup', __( 'Content Management', 'onclick-popup' ), __( 'Content Management', 'onclick-popup' ),'administrator', 'onclick-popup-content', 'onclickpopup_admin_content' );
+	add_menu_page( __( 'OnClick Popup', 'onclickpopup' ), __( 'OnClick Popup', 'onclickpopup' ), 'administrator', 'onclick-popup', 'onclickpopup_admin_options' );
+	add_submenu_page( 'onclick-popup', __( 'Popup Setting', 'onclickpopup' ), __( 'Popup Setting', 'onclickpopup' ),'administrator', 'onclick-popup', 'onclickpopup_admin_options' );
+	add_submenu_page( 'onclick-popup', __( 'Content Management', 'onclickpopup' ), __( 'Content Management', 'onclickpopup' ),'administrator', 'onclick-popup-content', 'onclickpopup_admin_content' );
 }
 
 function onclickpopup_widget($args) 
@@ -258,19 +271,23 @@ function onclickpopup_widget($args)
 
 function onclickpopup_control() 
 {
-	echo 'Onclick Popup';
+	echo '<p><b>';
+	_e('OnClick Popup', 'onclickpopup');
+	echo '.</b> ';
+	_e('Check official website for more information', 'onclickpopup');
+	?> <a target="_blank" href="<?php echo WP_onclickpopup_FAV; ?>"><?php _e('click here', 'onclickpopup'); ?></a></p><?php
 }
 
 function onclickpopup_init()
 {
 	if(function_exists('register_sidebar_widget')) 
 	{
-		wp_register_sidebar_widget('onclick-popup', 'Onclick Popup', 'onclickpopup_widget');
+		wp_register_sidebar_widget('onclick-popup', __( 'OnClick Popup', 'onclickpopup' ), 'onclickpopup_widget');
 	}
 	
 	if(function_exists('register_widget_control')) 
 	{
-		wp_register_widget_control('onclick-popup', array('Onclick Popup', 'widgets'), 'onclickpopup_control');
+		wp_register_widget_control('onclick-popup', array( __( 'OnClick Popup', 'onclickpopup' ), 'widgets'), 'onclickpopup_control');
 	} 
 }
 
@@ -283,6 +300,12 @@ else
 	add_action('admin_menu', 'onclickpopup_add_to_menu');
 }
 
+function onclickpopup_textdomain() 
+{
+	  load_plugin_textdomain( 'onclickpopup', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+add_action('plugins_loaded', 'onclickpopup_textdomain');
 add_action("plugins_loaded", "onclickpopup_init");
 register_activation_hook(__FILE__, 'onclickpopup_install');
 register_deactivation_hook(__FILE__, 'onclickpopup_deactivation');

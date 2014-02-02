@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-pop
 Plugin URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Tags: Popup, onclick, plugin, widget
 Requires at least: 3.0
-Tested up to: 3.6
-Stable tag: 5.0
+Tested up to: 3.8
+Stable tag: 5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,7 +66,9 @@ Q4. How to arrange the popup window position?
 
 == Screenshots ==
 
-1. Front end http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
+1. Front Screen. http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
+
+2. Admin Screen. http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 
 == Changelog ==
 
@@ -97,6 +99,12 @@ Tested up to 3.6
 Added few security features.
 New admin layout.
 
+= 5.1 =
+
+1. Tested up to 3.8
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (onclickpopup.po) available in the languages folder.
+
 == Upgrade Notice ==
 
 = 1.0 =			
@@ -125,3 +133,9 @@ Tested up to 3.5
 Tested up to 3.6
 Added few security features.
 New admin layout.
+
+= 5.1 =
+
+1. Tested up to 3.8
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (onclickpopup.po) available in the languages folder.

@@ -18,7 +18,7 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
 	
 	if ($result != '1')
 	{
-		?><div class="error fade"><p><strong>Oops, selected details doesn't exist (1).</strong></p></div><?php
+		?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist', 'onclickpopup'); ?></strong></p></div><?php
 	}
 	else
 	{
@@ -36,7 +36,7 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
 			
 			//	Set success message
 			$onclickpopup_success_msg = TRUE;
-			$onclickpopup_success = __('Selected record was successfully deleted.', WP_onclickpopup_UNIQUE_NAME);
+			$onclickpopup_success = __('Selected record was successfully deleted.', 'onclickpopup');
 		}
 	}
 	
@@ -48,28 +48,29 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
 ?>
 <div class="wrap">
   <div id="icon-edit" class="icon32 icon32-posts-post"></div>
-    <h2><?php echo WP_onclickpopup_TITLE ?><a class="add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=onclick-popup-content&amp;ac=add">Add New</a></h2>
+    <h2><?php _e('Onclick Popup', 'onclickpopup'); ?>
+	<a class="add-new-h2" href="<?php echo WP_onclickpopup_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New', 'onclickpopup'); ?></a></h2>
     <div class="tool-box">
 	<?php
 		$sSql = "SELECT * FROM `".WP_ONCLICK_PLUGIN."` order by onclickpopup_group, onclickpopup_id";
 		$myData = array();
 		$myData = $wpdb->get_results($sSql, ARRAY_A);
 		?>
-		<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/onclick-popup/pages/setting.js"></script>
+		<script language="JavaScript" src="<?php echo WP_onclickpopup_PLUGIN_URL; ?>/pages/setting.js"></script>
 		<form name="frm_onclickpopup_display" method="post">
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
             <th class="check-column" scope="row"><input type="checkbox" /></th>
-			<th scope="col">Title</th>
-            <th scope="col">Type/Group</th>
+			<th scope="col"><?php _e('Title', 'onclickpopup'); ?></th>
+            <th scope="col"><?php _e('Type/Group', 'onclickpopup'); ?></th>
           </tr>
         </thead>
 		<tfoot>
           <tr>
             <th class="check-column" scope="row"><input type="checkbox" /></th>
-			<th scope="col">Title</th>
-            <th scope="col">Type/Group</th>
+			<th scope="col"><?php _e('Title', 'onclickpopup'); ?></th>
+            <th scope="col"><?php _e('Type/Group', 'onclickpopup'); ?></th>
           </tr>
         </tfoot>
 		<tbody>
@@ -84,8 +85,8 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
 						<td align="left"><input type="checkbox" value="<?php echo $data['onclickpopup_id']; ?>" name="onclickpopup_group_item[]"></td>
 						<td><?php echo strtoupper(stripslashes($data['onclickpopup_title'])); ?>
 						<div class="row-actions">
-							<span class="edit"><a title="Edit" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=onclick-popup-content&amp;ac=edit&amp;did=<?php echo $data['onclickpopup_id']; ?>">Edit</a> | </span>
-							<span class="trash"><a onClick="javascript:onclickpopup_delete('<?php echo $data['onclickpopup_id']; ?>')" href="javascript:void(0);">Delete</a></span> 
+						<span class="edit"><a title="Edit" href="<?php echo WP_onclickpopup_ADMIN_URL; ?>&amp;ac=edit&amp;did=<?php echo $data['onclickpopup_id']; ?>"><?php _e('Edit', 'onclickpopup'); ?></a> | </span>
+						<span class="trash"><a onClick="javascript:onclickpopup_delete('<?php echo $data['onclickpopup_id']; ?>')" href="javascript:void(0);"><?php _e('Delete', 'onclickpopup'); ?></a></span> 
 						</div>
 						</td>
 						<td><?php echo stripslashes($data['onclickpopup_group']); ?></td>
@@ -96,7 +97,7 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
 			}
 			else
 			{
-				?><tr><td colspan="3" align="center">No records available.</td></tr><?php 
+				?><tr><td colspan="3" align="center"><?php _e('No records available.', 'onclickpopup'); ?></td></tr><?php 
 			}
 			?>
 		</tbody>
@@ -106,17 +107,20 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
       </form>	
 	  <div class="tablenav">
 	  <h2>
-	  <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=onclick-popup-content&amp;ac=add">Add new</a>
-	  <a class="button add-new-h2" target="_blank" href="<?php echo WP_onclickpopup_FAV; ?>">Help</a>
+	  <a class="button add-new-h2" href="<?php echo WP_onclickpopup_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New', 'onclickpopup'); ?></a>
+	  <a class="button add-new-h2" target="_blank" href="<?php echo WP_onclickpopup_FAV; ?>"><?php _e('Help', 'onclickpopup'); ?></a>
 	  </h2>
 	  </div>
 		<div style="height:5px"></div>
-		<h3>Plugin configuration option</h3>
+		<h3><?php _e('Plugin configuration option', 'onclickpopup'); ?></h3>
 		<ol>
-			<li>Add the plugin in the posts or pages using short code.</li>
-			<li>Add directly in to the theme using PHP code.</li>
-			<li>Drag and drop the widget to your sidebar.</li>
+			<li><?php _e('Add the plugin in the posts or pages using short code.', 'onclickpopup'); ?></li>
+			<li><?php _e('Add directly in to the theme using PHP code.', 'onclickpopup'); ?></li>
+			<li><?php _e('Drag and drop the widget to your sidebar.', 'onclickpopup'); ?></li>
 		</ol>
-		<p class="description"><?php echo WP_onclickpopup_LINK; ?></p>
+		<p class="description">
+			<?php _e('Check official website for more information', 'onclickpopup'); ?>
+			<a target="_blank" href="<?php echo WP_onclickpopup_FAV; ?>"><?php _e('click here', 'onclickpopup'); ?></a>
+		</p>
 	</div>
 </div>
