@@ -1,3 +1,4 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <div class="wrap">
 <?php
 $onclickpopup_errors = array();
@@ -117,11 +118,11 @@ if ($onclickpopup_error_found == FALSE && strlen($onclickpopup_success) > 0)
 		<p><?php _e('This is to group the content. Please select your group.', 'onclickpopup'); ?></p>
 		
 		<label for="tag-title"><?php _e('Popup title', 'onclickpopup'); ?></label>
-		<input name="onclickpopup_title" type="text" id="onclickpopup_title" value="" size="120" maxlength="1000" />
+		<input name="onclickpopup_title" type="text" id="onclickpopup_title" value="" size="60" maxlength="1000" />
 		<p><?php _e('Please enter your popup title.', 'onclickpopup'); ?></p>
 			
 		<label for="tag-title"><?php _e('Popup content', 'onclickpopup'); ?></label>
-		<textarea name="onclickpopup_content" cols="120" rows="12" id="onclickpopup_content"></textarea>
+		<textarea name="onclickpopup_content" cols="70" rows="12" id="onclickpopup_content"></textarea>
 		<p><?php _e('Please enter your popup content. You can add HTML text.', 'onclickpopup'); ?></p>
 					
       <input name="onclickpopup_id" id="onclickpopup_id" type="hidden" value="">

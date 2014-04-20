@@ -1,3 +1,4 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <?php
 // Form submitted, check the data
 if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_display'] == 'yes')
@@ -62,14 +63,16 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
         <thead>
           <tr>
             <th class="check-column" scope="row"><input type="checkbox" /></th>
-			<th scope="col"><?php _e('Title', 'onclickpopup'); ?></th>
+			<th scope="col"><?php _e('Popup Title', 'onclickpopup'); ?></th>
+			<th scope="col"><?php _e('Popup content', 'onclickpopup'); ?></th>
             <th scope="col"><?php _e('Type/Group', 'onclickpopup'); ?></th>
           </tr>
         </thead>
 		<tfoot>
           <tr>
             <th class="check-column" scope="row"><input type="checkbox" /></th>
-			<th scope="col"><?php _e('Title', 'onclickpopup'); ?></th>
+			<th scope="col"><?php _e('Popup Title', 'onclickpopup'); ?></th>
+			<th scope="col"><?php _e('Popup content', 'onclickpopup'); ?></th>
             <th scope="col"><?php _e('Type/Group', 'onclickpopup'); ?></th>
           </tr>
         </tfoot>
@@ -83,13 +86,14 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
 					?>
 					<tr class="<?php if ($i&1) { echo'alternate'; } else { echo ''; }?>">
 						<td align="left"><input type="checkbox" value="<?php echo $data['onclickpopup_id']; ?>" name="onclickpopup_group_item[]"></td>
-						<td><?php echo strtoupper(stripslashes($data['onclickpopup_title'])); ?>
+						<td><?php echo $data['onclickpopup_title']; ?>
 						<div class="row-actions">
 						<span class="edit"><a title="Edit" href="<?php echo WP_onclickpopup_ADMIN_URL; ?>&amp;ac=edit&amp;did=<?php echo $data['onclickpopup_id']; ?>"><?php _e('Edit', 'onclickpopup'); ?></a> | </span>
 						<span class="trash"><a onClick="javascript:onclickpopup_delete('<?php echo $data['onclickpopup_id']; ?>')" href="javascript:void(0);"><?php _e('Delete', 'onclickpopup'); ?></a></span> 
 						</div>
 						</td>
-						<td><?php echo stripslashes($data['onclickpopup_group']); ?></td>
+						<td><?php echo substr($data['onclickpopup_content'],0,75); ?>...</td>
+						<td><?php echo $data['onclickpopup_group']; ?></td>
 					</tr>
 					<?php 
 					$i = $i+1; 
@@ -97,7 +101,7 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
 			}
 			else
 			{
-				?><tr><td colspan="3" align="center"><?php _e('No records available.', 'onclickpopup'); ?></td></tr><?php 
+				?><tr><td colspan="4" align="center"><?php _e('No records available.', 'onclickpopup'); ?></td></tr><?php 
 			}
 			?>
 		</tbody>

@@ -3,8 +3,8 @@
 Plugin Name: Onclick Popup
 Plugin URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Description: One easy way to send your visitors a welcome message, notice, or advertisement is to add this popup plugin to your site. WordPress on-click Popup plugin will create a popup message to your website. The popup will appear on text click so it is named on-click popup.
-Author: Gopi.R
-Version: 5.1
+Author: Gopi Ramasamy
+Version: 5.2
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Tags: popup, onclick, plugin, widget
@@ -14,10 +14,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 global $wpdb, $wp_version;
 define("WP_ONCLICK_PLUGIN", $wpdb->prefix . "onclick_popup_plugin");
-//define("WP_onclickpopup_UNIQUE_NAME", "onclick-popup");
-//define("WP_onclickpopup_TITLE", "Onclick Popup");
 define('WP_onclickpopup_FAV', 'http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/');
-//define('WP_onclickpopup_LINK', 'Check official website for more information <a target="_blank" href="'.WP_onclickpopup_FAV.'">click here</a>');
 
 if ( ! defined( 'WP_onclickpopup_BASENAME' ) )
 	define( 'WP_onclickpopup_BASENAME', plugin_basename( __FILE__ ) );
