@@ -4,7 +4,7 @@ Plugin Name: Onclick Popup
 Plugin URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Description: One easy way to send your visitors a welcome message, notice, or advertisement is to add this popup plugin to your site. WordPress on-click Popup plugin will create a popup message to your website. The popup will appear on text click so it is named on-click popup.
 Author: Gopi Ramasamy
-Version: 5.2
+Version: 5.3
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Tags: popup, onclick, plugin, widget
@@ -53,7 +53,10 @@ function OnClickPopUp()
 	</style>
     <link rel="stylesheet" type="text/css" href="<?php echo WP_onclickpopup_PLUGIN_URL; ?>/onclick-popup.css" />
 	<?php
-	$sSql = "select * from ".WP_ONCLICK_PLUGIN." where 1=1 and onclickpopup_group='GROUP1' order by rand() limit 0,6;";
+	$sSql = "select * from ".WP_ONCLICK_PLUGIN." where 1=1";
+	$sSql = $sSql . " and onclickpopup_group='GROUP1'";
+	$sSql = $sSql . " and (`onclickpopup_date` >= NOW() or `onclickpopup_date` = '0000-00-00')";
+	$sSql = $sSql . " order by rand() limit 0,6";
 	$data = $wpdb->get_results($sSql);
 	if ( ! empty($data) ) 
 	{
@@ -62,7 +65,11 @@ function OnClickPopUp()
 		{
 			$onclickpopup_group = stripslashes($data->onclickpopup_group);
 			$onclickpopup_title = htmlspecialchars(stripslashes($data->onclickpopup_title));
-			$onclickpopup_content = htmlspecialchars(stripslashes($data->onclickpopup_content));
+			//$onclickpopup_content = htmlspecialchars(stripslashes($data->onclickpopup_content));
+			$onclickpopup_temp = $data->onclickpopup_content;
+			$onclickpopup_temp = do_shortcode($onclickpopup_temp);
+			$onclickpopup_content = stripslashes($onclickpopup_temp);
+			
 			$div = "'PopUpFad".$counter."'";
 			$li = $li . '<li><a href="#" onclick="PopUpFadOpen('.$div.', '.$setting_left.')">'.$onclickpopup_title.'</a></li>';
 			?>
@@ -74,8 +81,8 @@ function OnClickPopUp()
     		<?php
 			$counter = $counter + 1;
 		}
+		?><ul><?php echo $li; ?></ul><?php
 	}
-	?><ul><?php echo $li; ?></ul><?php
 }
 
 function onclickpopup_install() 
@@ -213,7 +220,11 @@ function onclickpopup_shortcode( $atts )
 	$OnClickPopup = $OnClickPopup . '</style>';
     $OnClickPopup = $OnClickPopup . '<link rel="stylesheet" type="text/css" href="'.WP_onclickpopup_PLUGIN_URL.'/onclick-popup.css" />';
     
-	$sSql = "select * from ".WP_ONCLICK_PLUGIN." where 1=1 and onclickpopup_group='GROUP".$group."' order by rand() limit 0,6;";
+	$sSql = "select * from ".WP_ONCLICK_PLUGIN." where 1=1";
+	$sSql = $sSql . " and onclickpopup_group='GROUP".$group."'";
+	$sSql = $sSql . " and (`onclickpopup_date` >= NOW() or `onclickpopup_date` = '0000-00-00')";
+	$sSql = $sSql . " order by rand() limit 0,6";
+	
 	$data = $wpdb->get_results($sSql);
 	if ( ! empty($data) ) 
 	{
@@ -222,7 +233,11 @@ function onclickpopup_shortcode( $atts )
 		{
 			$onclickpopup_group = stripslashes($data->onclickpopup_group);
 			$onclickpopup_title = stripslashes($data->onclickpopup_title);
-			$onclickpopup_content = stripslashes($data->onclickpopup_content);
+			//$onclickpopup_content = stripslashes($data->onclickpopup_content);
+			$onclickpopup_temp = $data->onclickpopup_content;
+			$onclickpopup_temp = do_shortcode($onclickpopup_temp);
+			$onclickpopup_content = stripslashes($onclickpopup_temp);
+			
 			$div = "'PopUpFad".$counter."'";
 			$li = $li . '<div><a href="#" onclick="PopUpFadOpen('.$div.', '.$setting_left.')">'.$onclickpopup_title.'</a></div>';
 			

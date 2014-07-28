@@ -65,7 +65,8 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
             <th class="check-column" scope="row"><input type="checkbox" /></th>
 			<th scope="col"><?php _e('Popup Title', 'onclickpopup'); ?></th>
 			<th scope="col"><?php _e('Popup content', 'onclickpopup'); ?></th>
-            <th scope="col"><?php _e('Type/Group', 'onclickpopup'); ?></th>
+            <th scope="col"><?php _e('Group', 'onclickpopup'); ?></th>
+			<th scope="col"><?php _e('Expiration', 'onclickpopup'); ?></th>
           </tr>
         </thead>
 		<tfoot>
@@ -73,7 +74,8 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
             <th class="check-column" scope="row"><input type="checkbox" /></th>
 			<th scope="col"><?php _e('Popup Title', 'onclickpopup'); ?></th>
 			<th scope="col"><?php _e('Popup content', 'onclickpopup'); ?></th>
-            <th scope="col"><?php _e('Type/Group', 'onclickpopup'); ?></th>
+            <th scope="col"><?php _e('Group', 'onclickpopup'); ?></th>
+			<th scope="col"><?php _e('Expiration', 'onclickpopup'); ?></th>
           </tr>
         </tfoot>
 		<tbody>
@@ -92,8 +94,9 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
 						<span class="trash"><a onClick="javascript:onclickpopup_delete('<?php echo $data['onclickpopup_id']; ?>')" href="javascript:void(0);"><?php _e('Delete', 'onclickpopup'); ?></a></span> 
 						</div>
 						</td>
-						<td><?php echo substr($data['onclickpopup_content'],0,75); ?>...</td>
+						<td><?php echo substr(stripslashes($data['onclickpopup_content']),0,110); ?>...</td>
 						<td><?php echo $data['onclickpopup_group']; ?></td>
+						<td><?php echo substr($data['onclickpopup_date'],0,10); ?></td>
 					</tr>
 					<?php 
 					$i = $i+1; 
@@ -101,7 +104,7 @@ if (isset($_POST['frm_onclickpopup_display']) && $_POST['frm_onclickpopup_displa
 			}
 			else
 			{
-				?><tr><td colspan="4" align="center"><?php _e('No records available.', 'onclickpopup'); ?></td></tr><?php 
+				?><tr><td colspan="5" align="center"><?php _e('No records available.', 'onclickpopup'); ?></td></tr><?php 
 			}
 			?>
 		</tbody>

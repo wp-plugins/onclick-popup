@@ -69,6 +69,7 @@ function PopUpFadLft(Left)
 
 function PopUpFadObj(PopUpFadOpen) 
 {
+	//alert(document.getElementById(PopUpFadOpen).innerHTML);
 	return document.getElementById(PopUpFadOpen);	
 }
 

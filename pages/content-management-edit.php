@@ -38,7 +38,8 @@ else
 		'onclickpopup_id' => $data['onclickpopup_id'],
 		'onclickpopup_group' => $data['onclickpopup_group'],
 		'onclickpopup_title' => $data['onclickpopup_title'],
-		'onclickpopup_content' => $data['onclickpopup_content']
+		'onclickpopup_content' => $data['onclickpopup_content'],
+		'onclickpopup_date' => $data['onclickpopup_date']
 	);
 }
 // Form submitted, check the data
@@ -67,6 +68,7 @@ if (isset($_POST['onclickpopup_form_submit']) && $_POST['onclickpopup_form_submi
 		$onclickpopup_errors[] = __('Please enter the popup content.', 'onclickpopup');
 		$onclickpopup_error_found = TRUE;
 	}
+	$form['onclickpopup_date'] = isset($_POST['onclickpopup_date']) ? $_POST['onclickpopup_date'] : '0000-00-00';
 
 	//	No errors found, we can add this Group to the table
 	if ($onclickpopup_error_found == FALSE)
@@ -75,10 +77,11 @@ if (isset($_POST['onclickpopup_form_submit']) && $_POST['onclickpopup_form_submi
 				"UPDATE `".WP_ONCLICK_PLUGIN."`
 				SET `onclickpopup_group` = %s,
 				`onclickpopup_title` = %s,
-				`onclickpopup_content` = %s
+				`onclickpopup_content` = %s,
+				`onclickpopup_date` = %s
 				WHERE onclickpopup_id = %d
 				LIMIT 1",
-				array($form['onclickpopup_group'], $form['onclickpopup_title'], $form['onclickpopup_content'], $did)
+				array($form['onclickpopup_group'], $form['onclickpopup_title'], $form['onclickpopup_content'], $form['onclickpopup_date'], $did)
 			);
 		$wpdb->query($sSql);
 		
@@ -152,6 +155,10 @@ if ($onclickpopup_error_found == FALSE && strlen($onclickpopup_success) > 0)
 		<label for="tag-title"><?php _e('Popup content', 'onclickpopup'); ?></label>
 		<textarea name="onclickpopup_content" cols="70" rows="12" id="onclickpopup_content"><?php echo esc_html(stripslashes($form['onclickpopup_content'])); ?></textarea>
 		<p><?php _e('Please enter your popup content. You can add HTML text.', 'onclickpopup'); ?></p>
+		
+		<label for="tag-display-order"><?php _e('Expiration date', 'onclickpopup'); ?></label>
+		<input name="onclickpopup_date" type="text" id="onclickpopup_date" value="<?php echo substr($form['onclickpopup_date'],0,10); ?>" maxlength="10" />
+		<p><?php _e('Please enter the expiration date in this format YYYY-MM-DD <br /> 9999-12-30 : Is equal to no expire.', 'onclickpopup'); ?></p>
 	  
       <input name="onclickpopup_id" id="onclickpopup_id" type="hidden" value="<?php echo $form['onclickpopup_id']; ?>">
       <input type="hidden" name="onclickpopup_form_submit" value="yes"/>

@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-pop
 Plugin URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Tags: Popup, onclick, plugin, widget
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 5.2
+Tested up to: 3.9.1
+Stable tag: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,11 +38,6 @@ For more information check this link : http://www.gopiplus.com/work/2011/11/13/w
 Short code available,	
 
 http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
-
-See the live demo!	
-
-[Demo](http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/)		
-[To see my more plugin](http://www.gopiplus.com/work/plugin-list/)		
 
 == Installation ==
 
@@ -109,6 +104,11 @@ Plugin *.po file (onclickpopup.po) available in the languages folder.
 
 1. Tested up to 3.9
 
+= 5.3 =
+
+1. Options to add Expiration date for popup message.
+2. Support short code in the popup (i.e You can add other plugin short code inside this popup window)
+
 == Upgrade Notice ==
 
 = 1.0 =			
@@ -147,3 +147,8 @@ Plugin *.po file (onclickpopup.po) available in the languages folder.
 = 5.2 =
 
 1. Tested up to 3.9
+
+= 5.3 =
+
+1. Options to add Expiration date for popup message.
+2. Support short code in the popup (i.e You can add other plugin short code inside this popup window)
