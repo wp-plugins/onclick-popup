@@ -5,12 +5,12 @@ Author URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-pop
 Plugin URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Tags: Popup, onclick, plugin, widget
 Requires at least: 3.0
-Tested up to: 3.9.1
-Stable tag: 5.3
+Tested up to: 4.0
+Stable tag: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WordPress on-click Popup plugin will create a popup message to your website. The popup will appear on text click so it is named on-click popup.
+WordPress onclick Popup plugin will create a popup message to your website. The popup will appear on text click so it is named on-click popup.
 
 == Description ==
 
@@ -33,19 +33,14 @@ Available Fancy Effect
 
 We can configure this plug-in in three different way.
 
-For more information check this link : http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
-
 Short code available,	
 
 http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 
 == Installation ==
 
-**Installation Instruction & Configuration**  
-
 [Installation Instruction](http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/)								
 [Configuration](http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/)											
-[Live demo](http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/)									
 
 == Frequently Asked Questions ==
 
@@ -109,6 +104,10 @@ Plugin *.po file (onclickpopup.po) available in the languages folder.
 1. Options to add Expiration date for popup message.
 2. Support short code in the popup (i.e You can add other plugin short code inside this popup window)
 
+= 5.4 =
+
+1. Tested up to 4.0
+
 == Upgrade Notice ==
 
 = 1.0 =			
@@ -152,3 +151,7 @@ Plugin *.po file (onclickpopup.po) available in the languages folder.
 
 1. Options to add Expiration date for popup message.
 2. Support short code in the popup (i.e You can add other plugin short code inside this popup window)
+
+= 5.4 =
+
+1. Tested up to 4.0
