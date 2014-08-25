@@ -108,6 +108,7 @@ Plugin *.po file (onclickpopup.po) available in the languages folder.
 
 1. Tested up to 4.0
 
+
 == Upgrade Notice ==
 
 = 1.0 =			
