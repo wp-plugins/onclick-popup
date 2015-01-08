@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-pop
 Plugin URI: http://www.gopiplus.com/work/2011/11/13/wordpress-plugin-onclick-popup/
 Tags: Popup, onclick, plugin, widget
 Requires at least: 3.0
-Tested up to: 4.0
-Stable tag: 5.4
+Tested up to: 4.1
+Stable tag: 5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,6 +108,9 @@ Plugin *.po file (onclickpopup.po) available in the languages folder.
 
 1. Tested up to 4.0
 
+= 5.5 =
+
+1. Tested up to 4.1
 
 == Upgrade Notice ==
 
@@ -156,3 +159,7 @@ Plugin *.po file (onclickpopup.po) available in the languages folder.
 = 5.4 =
 
 1. Tested up to 4.0
+
+= 5.5 =
+
+1. Tested up to 4.1
